@@ -1,19 +1,48 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import WorkGrid from './WorkGrid';
+import Header from './Header';
+import Footer from './Footer';
+import Home from './Home';
 
-import logo from '../logo.svg';
-import '../App.css';
+import '../App.scss';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			pageLoaded: false
+		};
+	}
+
+	componentDidMount() {
+		document.body.scrollTop = 0;
+		console.log('app ran');
+	}
+
 	render() {
 		return (
 			<div className="App">
-				<h1>Wavey Media Group</h1>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
-				<WorkGrid />
+				<Router onUpdate={() => window.scrollTo(0, 0)}>
+					<div>
+						<Header />
+						<div className="page-wrap">
+							<Switch>
+								<Route
+									exact
+									path="/"
+									render={props => (
+										<Home {...props} pass_to_page_content="hi" />
+									)}
+								/>
+								<Route exact path="/work" component={WorkGrid} />
+							</Switch>
+						</div>
+						<Footer />
+					</div>
+				</Router>
 			</div>
 		);
 	}

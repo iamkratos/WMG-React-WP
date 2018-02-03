@@ -1,0 +1,287 @@
+@mixin transition($transition) {
+	-moz-transition: $transition;
+	-o-transition: $transition;
+	-webkit-transition: $transition;
+	transition: $transition;
+}
+
+@mixin grid($grid) {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax($grid, 1fr));
+}
+
+$header-font: 'Raleway', sans-serif;
+$content-font: 'Cabin', sans-serif;
+
+body {
+	min-height: 100vh;
+
+	&.froze {
+		overflow: hidden;
+	}
+}
+
+.banner {
+	text-align: center;
+
+	h1 {
+		color: #fff;
+		margin: 0;
+		font-family: $header-font;
+		font-size: 90px;
+		padding-top: 30vh;
+
+		span {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+	}
+
+	p {
+		color: #fff;
+		font-weight: bold;
+		font-size: 30px;
+		margin-top: 15px;
+	}
+}
+
+a,
+li,
+p,
+ul {
+	font-family: $content-font;
+}
+
+.App-logo {
+	animation: App-logo-spin infinite 20s linear;
+	height: 80px;
+}
+
+.App-header {
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
+}
+
+.App-title {
+	font-size: 1.5em;
+}
+
+.App-intro {
+	font-size: large;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* basics  */
+.btn-black {
+	background: #000;
+	color: #fff;
+	font-size: 16px;
+	padding: 10px 40px;
+	border-radius: 5px;
+	border: 1px solid #000;
+	@include transition(0.25s);
+	&:hover {
+		color: #000;
+		background: transparent;
+	}
+}
+
+/* wrapper  */
+.wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.page-wrap {
+	min-height: 100vh;
+	padding-top: 50px;
+}
+
+/* header */
+
+header {
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	background: #000;
+
+	@include transition(0.25s);
+
+	.wrapper {
+		@include grid(120px);
+		align-content: center;
+	}
+
+	.logo-section {
+		text-align: left;
+		img {
+			margin-right: auto;
+			max-width: 210px;
+			padding: 15px;
+		}
+
+		.dark {
+			display: none;
+		}
+	}
+
+	.link-section {
+		margin-top: 4px;
+		ul {
+			text-align: right;
+			margin-top: 20px;
+			margin-left: 0px;
+			li {
+				list-style: none;
+				display: inline-block;
+				margin-right: 20px;
+
+				a {
+					color: #fff;
+					text-decoration: none;
+					text-transform: uppercase;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+}
+
+.sticky {
+	header {
+		background: #fff !important;
+		border-bottom: 1px solid #ddd;
+
+		.link-section {
+			ul {
+				li {
+					a {
+						text-decoration: none;
+						color: #777;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* Work */
+
+.portfolioBox {
+	width: 100%;
+	height: 89vh;
+	margin: 0px auto 0 auto;
+	background-size: cover;
+	border-radius: 5px;
+	overflow: hidden;
+	text-align: center;
+	position: relative;
+}
+
+.portfolioContent {
+	font-weight: 900;
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.portfolioOverlay {
+	background: transparent;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	padding: 30px 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: 0.7s;
+}
+
+.portfolioBox:hover {
+	.portfolioOverlay {
+		opacity: 1;
+		transition: 0.4s;
+	}
+
+	.work__info {
+		border: 5px solid #000;
+	}
+}
+
+.work__wrap {
+	margin-bottom: 2vh;
+}
+
+.work__info {
+	text-align: left;
+	margin-right: 15vw;
+	height: auto;
+	margin-top: 15vh;
+	max-width: 400px;
+	margin-left: auto;
+	padding: 20px 30px;
+	border: 2px solid #000;
+	transition: 0.4s;
+	display: grid;
+
+	.inner-wrap {
+		align-self: center;
+	}
+
+	img {
+		margin-bottom: 10px;
+		max-width: 200px;
+		max-height: 100px;
+	}
+
+	.description {
+		font-size: 13px;
+		margin-bottom: 20px;
+	}
+
+	&.flipped {
+		margin-left: 9vw;
+	}
+}
+
+.extra-info {
+	padding: 10px 20px;
+	font-size: 14px;
+	margin-top: -40px;
+	z-index: 100;
+	position: relative;
+	.left {
+		float: left;
+	}
+
+	.right {
+		float: right;
+	}
+}
+
+/* Home */
+
+.home-page {
+	.banner {
+		height: 100vh;
+		background: linear-gradient(rgba(20, 20, 20, 0.3), rgba(20, 20, 20, 0.3)) 0
+				0/cover,
+			url('http://localhost:8888/wp-content/uploads/2018/02/world-trade-center70.jpg')
+				center/cover no-repeat;
+	}
+}
+
+/* Footer */
+
+footer {
+	position: absolute;
+	width: 100%;
+}
