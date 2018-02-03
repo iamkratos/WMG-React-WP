@@ -9,6 +9,25 @@ const FadeDiv = styled.div`
 	animation: 1s ${fadeAnimation};
 `;
 
+const BlackButton = styled.button`
+	color: #fff;
+	background: #000;
+	padding: 10px 20px;
+	font-size: 24px;
+
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	&:hover {
+		background: #fff;
+		a {
+			color: #000;
+		}
+	}
+`;
+
 export default class Home extends Component {
 	componentDidMount() {
 		document.body.classList.add('froze');
@@ -29,9 +48,9 @@ export default class Home extends Component {
 						</h1>
 						<p>We create beautiful digital experiences</p>
 						<div className="btn-wrap">
-							<button className="btn btn-black">
+							<BlackButton>
 								<Link to="/work">Our Work</Link>
-							</button>
+							</BlackButton>
 						</div>
 					</div>
 				</div>
